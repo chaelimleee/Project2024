@@ -16,7 +16,7 @@
 
 	<div align="center">
 	<br>
-	<h3> 음식 페이지 게시판 </h3>
+	<h3> 음식 페이지 게시판 </h3> 
 	<br>
 	
 	<!-- <div class="searchFood" >
@@ -37,7 +37,10 @@
 		<tr th:each="food, iterState : ${foodList}">
 			<td th:text="${food.id}">  </td>
 			<!-- <td><img th:if="${food.food_img != null}" th:src="${#strings.equals(food.food_img,'blank_image.png')?'/img/blank_image.png':'/img/upload_image3_10page/' +${food.food_img}"  height="120" width="120" >  </td> --> 
-			<td><img id="imgId" th:src="@{/img/upload_image3_10page/}+${food.food_img}"  height="120" width="120" }>  </td> 
+			<td><!-- <img id="imgId" th:src="|${@{/img/upload_image3_10page/}+${food.food_img}|"  height="120" width="120" }> -->  
+				<img id="imgId" th:if="${food.food_img ne 'blank_image.png'}" th:src="@{/img/upload_image3_10page/} + ${food.food_img}" height="120" width="120">
+    			<img id="imgId" th:unless="${food.food_img ne 'blank_image.png'}" th:src="@{/img/blankimg.png}" height="120" width="120">
+			</td> 
 			<!-- <td th:text="${food.food_img}">  </td> -->
 			<td th:text="${food.food_name}">  </td>
 			<td th:text="${food.food_type}">  </td>
